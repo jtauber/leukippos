@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>Leukippos</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="atom.js"></script>
+    <link rel="stylesheet" href="leukippos.css" />
+</head>
+<body>
+    <h1>Leukippos</h1>
+    <p>The beginnings of a Javascript Atom Client. At the moment it just parses a subset of the
+        Atom Syndication Format and displays the results.</p>
+    <form id="url_form">
+        <label>Atom Feed URL:</label>
+        <input id="url_field" type="text" name="url" value="http://jtauber.com/atom/full/" size="50"/>
+        <input type="submit" value="GO" />
+    </form>
+    <div id="feed"></div>
+    <script>
+        $("#url_field").focus();
+        $("#url_form").submit(function () {
+            $("#feed").html("loading...");
+            var url = $("#url_field").val();
+            loadFeed(url);
+            return false;
+        })
+        function loadFeed(url) {
+            $.getFeed({
+                url: url,
+                success: function(feed) {
+                    var html = "";
+                    html +=
+                        "<div class='feed'>" + 
+                        "<p><tt>" + feed.id + "</tt></p>" +
+                        "<h2>" + feed.title + "</h2>" +
+                        "<p><a href='" + feed.link_alternate + "'>" + feed.link_alternate + "</a></p>" +
+                        "<p>updated: " + feed.updated + "</p>";
+                    if (feed.author) html += "<p>author: " + feed.author + "</p>";
+                    html += "</div>"
+                    $("#feed").html(html);
+                    
+                    for (var i = 0; i < feed.entries.length; i++) {
+                        var entry = feed.entries[i];
+                        html = "";
+                        html +=
+                            "<div class='entry'>" +
+                            "<p><tt>" + entry.id + "</tt></p>" +
+                            "<h3>" + entry.title + "</h3>" +
+                            "<p><a href='" + entry.link_alternate + "'>" + entry.link_alternate + "</a></p>" +
+                            "<p><b>updated</b>: " + entry.updated + 
+                            " <b>published</b>: " + entry.updated + "</p>";
+                        if (entry.author_uri && entry.author_name) html += "<p>author: <a href='" + entry.author_uri + "'>" + entry.author_name + "</a></p>";
+                        else if (entry.author_name) html += "<p>author: " + entry.author_name + "</p>";
+                        if (entry.summary) html += "<p><b>summary</b>: " + entry.summary + "</p>";
+                        if (entry.content) html += "<div class='content'>" + entry.content + "</div>";
+                        html += "</div>";
+                        
+                        $("#feed").append(html);
+                    }
+                    
+                },
+                error: function(status) {
+                    $("#feed").html("ERROR: " + status);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

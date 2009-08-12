@@ -1,0 +1,74 @@
+body {
+    width: 960px;
+    margin: 20px auto;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    background: #EEE;
+}
+form#url_form {
+    padding: 5px 10px;
+    background: #DEF;
+    font-size: 14pt;
+    border-top: 2px solid #F0F7FF;
+    border-left: 2px solid #F0F7FF;
+    border-bottom: 2px solid #8AB;
+    border-right: 2px solid #8AB;
+}
+form#url_form input {
+    font-size: 14pt;
+}
+div.feed {
+    padding: 5px 10px;
+    background: #333;
+    font-size: 12pt;
+    color: #DDD;
+    border-top: 3px solid #666;
+    border-left: 3px solid #666;
+    border-bottom: 3px solid #222;
+    border-right: 3px solid #222;
+}
+div.feed h2 {
+    margin: 0;
+}
+div.feed p {
+    margin: 0;
+}
+div.feed a {
+    color: #9BC;
+}
+div.feed a:hover {
+    color: #DEF;
+}
+div.entry {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #DDD;
+    font-size: 10pt;
+    color: #333;
+    border-top: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+    border-bottom: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+}
+div.entry h3 {
+    margin: 0;
+}
+div.entry p {
+    margin: 0;
+}
+div.entry a {
+    color: #336;
+}
+div.entry a:hover {
+    color: #669;
+}
+div.content {
+    background: #EEE;
+    padding: 5px 10px;
+    border-top: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    border-bottom: 1px solid #FFF;
+    border-right: 1px solid #FFF;
+}
+div.content p {
+    margin-top: 1em;
+}
